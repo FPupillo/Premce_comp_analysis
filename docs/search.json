@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "",
+    "text": "[[1]]\n[1] \"dplyr\"     \"stats\"     \"graphics\"  \"grDevices\" \"utils\"     \"datasets\" \n[7] \"methods\"   \"base\"     \n\n[[2]]\n[1] \"ggplot2\"   \"dplyr\"     \"stats\"     \"graphics\"  \"grDevices\" \"utils\"    \n[7] \"datasets\"  \"methods\"   \"base\"     \n\n[[3]]\n [1] \"tidyr\"     \"ggplot2\"   \"dplyr\"     \"stats\"     \"graphics\"  \"grDevices\"\n [7] \"utils\"     \"datasets\"  \"methods\"   \"base\"     \n\n[[4]]\n [1] \"lme4\"      \"Matrix\"    \"tidyr\"     \"ggplot2\"   \"dplyr\"     \"stats\"    \n [7] \"graphics\"  \"grDevices\" \"utils\"     \"datasets\"  \"methods\"   \"base\"     \n\n[[5]]\n [1] \"car\"       \"carData\"   \"lme4\"      \"Matrix\"    \"tidyr\"     \"ggplot2\"  \n [7] \"dplyr\"     \"stats\"     \"graphics\"  \"grDevices\" \"utils\"     \"datasets\" \n[13] \"methods\"   \"base\"     \n\n[[6]]\n [1] \"sjPlot\"    \"car\"       \"carData\"   \"lme4\"      \"Matrix\"    \"tidyr\"    \n [7] \"ggplot2\"   \"dplyr\"     \"stats\"     \"graphics\"  \"grDevices\" \"utils\"    \n[13] \"datasets\"  \"methods\"   \"base\"     \n\n[[7]]\n [1] \"Rmisc\"     \"plyr\"      \"lattice\"   \"sjPlot\"    \"car\"       \"carData\"  \n [7] \"lme4\"      \"Matrix\"    \"tidyr\"     \"ggplot2\"   \"dplyr\"     \"stats\"    \n[13] \"graphics\"  \"grDevices\" \"utils\"     \"datasets\"  \"methods\"   \"base\"     \n\n[[8]]\n [1] \"patchwork\" \"Rmisc\"     \"plyr\"      \"lattice\"   \"sjPlot\"    \"car\"      \n [7] \"carData\"   \"lme4\"      \"Matrix\"    \"tidyr\"     \"ggplot2\"   \"dplyr\"    \n[13] \"stats\"     \"graphics\"  \"grDevices\" \"utils\"     \"datasets\"  \"methods\"  \n[19] \"base\"     \n\n[[9]]\n [1] \"lubridate\" \"forcats\"   \"stringr\"   \"purrr\"     \"readr\"     \"tibble\"   \n [7] \"tidyverse\" \"patchwork\" \"Rmisc\"     \"plyr\"      \"lattice\"   \"sjPlot\"   \n[13] \"car\"       \"carData\"   \"lme4\"      \"Matrix\"    \"tidyr\"     \"ggplot2\"  \n[19] \"dplyr\"     \"stats\"     \"graphics\"  \"grDevices\" \"utils\"     \"datasets\" \n[25] \"methods\"   \"base\"     \n\n[[10]]\n [1] \"ggeffects\" \"lubridate\" \"forcats\"   \"stringr\"   \"purrr\"     \"readr\"    \n [7] \"tibble\"    \"tidyverse\" \"patchwork\" \"Rmisc\"     \"plyr\"      \"lattice\"  \n[13] \"sjPlot\"    \"car\"       \"carData\"   \"lme4\"      \"Matrix\"    \"tidyr\"    \n[19] \"ggplot2\"   \"dplyr\"     \"stats\"     \"graphics\"  \"grDevices\" \"utils\"    \n[25] \"datasets\"  \"methods\"   \"base\""
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "",
+    "text": "This document contains the analyses of the model-derived variables for PREMCE-computational for both the behavioral and the fMRI data combined"
+  },
+  {
+    "objectID": "index.html#rl-models",
+    "href": "index.html#rl-models",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "RL models",
+    "text": "RL models\nSeveral reinforcement learning models were fitted to the data using hierarchical bayesian estimation.\nThe model differed depending on the following factors:\n\nChoice-dependent vs Observational models.\nFor the choice-dependent models , the categories were updated based on the choice made by the participant.\nFor single-update models (SU), only the category chosen by the participant is updated:\n\n\\[    {V}_{t+1}^{c,m}= {V}_t^{c,m} + {\\alpha}{\\delta},\\]\nwhere \\({V}_{t+1}^{c,m}\\) represents the expected value at the next trial for category c and monster m. The prediction error \\(\\delta\\) is given by:\n\\[{\\delta} = {r}_t^c - {V}_t^{c,m},\\]"
+  },
+  {
+    "objectID": "index.html#rl-models-1",
+    "href": "index.html#rl-models-1",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "RL models",
+    "text": "RL models\nIn choice- dependent models, the prediction error is defined as the following:\n\\[\\delta_t = \\begin{cases}\n1 - {V}_t^{c,m} \\ if  c_{chosen_t} = c_t   \\\\\n0 - {V}_t^{c,m} \\ otherwise\n\\end{cases}\\]\nFor the dual-update models (DU), the unchosen category is also updated."
+  },
+  {
+    "objectID": "index.html#rl-models-2",
+    "href": "index.html#rl-models-2",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "RL models",
+    "text": "RL models\nBy contrast, the observational models (also called IC), were updated depending on the category of the object that is presented on every trial. Accordingly, the reward \\(r_t^c\\) is defined as the following:\n\\[r_t^c = \\begin{cases}\n1\\ if  \\ c = c_{object_t}  \\\\\n0 \\ otherwise\n\\end{cases}\\]\nThe model assumes that individuals are not only increasing the value of a given category after observing an outcome, but they will also decrease the values of the categories that have not been presented on that trial.\n\nSingle or double learning rate.\nThe models estimated either one learning rate across all the trials, or differentiate between a learning rate for the chosen vs unchosen category (for the choice-dependent models) or the observed vs unobserved category (for the observational models)."
+  },
+  {
+    "objectID": "index.html#model-comparison",
+    "href": "index.html#model-comparison",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Model comparison",
+    "text": "Model comparison\nA win-stay-lose-shift (WSLS) model was also fitted as a baseline model for comparison\nWAIC (widely Applicable Information Criterion) is used to approximate cross-validation with the loo package. The package also estimates the expected log predictive density, given the data, leaving one sample out (elpd_loo). The higher the elpd_loo (and the lower the WAIC), the better the model. THis table shows that the observational model with 2 learning rates (waic_fit_hBayes_RW_IC_2alpha_beta) slightly outperform the observational model with only one learning rate (waic_fit_hBayes_RW_IC_alpha_beta)"
+  },
+  {
+    "objectID": "index.html#model-comparison-1",
+    "href": "index.html#model-comparison-1",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Model comparison",
+    "text": "Model comparison\n\n\n\nModel Name\nelpd_diff\nse_diff\nwaic\n\n\n\n\nRW_IC_2alpha_beta\n0.0\n0.0\n22317.8\n\n\nRW_IC_alpha_beta\n-43.2\n26.8\n22404.2\n\n\nRW_SU_alphapos_alphaneg_beta\n-1432.8\n185.4\n25183.5\n\n\nRW_SU_alpha_beta\n-2191.5\n310.8\n26700.7\n\n\nRW_DU_alpha_beta\n-2660.2\n204.1\n27638.2\n\n\nWSLS\n-6682.1\n515.1\n35682.0"
+  },
+  {
+    "objectID": "index.html#model-comparison-2",
+    "href": "index.html#model-comparison-2",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Model comparison",
+    "text": "Model comparison\nThis result is similar if we use stacking, which computes the difference between the loo-predicted and the actual data, and assign a weight to each model. The higher the weight, the smaller the error between the predicted and actual data.\nMethod: stacking\n\n\n\nModel Name\nweight\n\n\n\n\nhBayes_RW_DU_alpha_beta\n0.000\n\n\nhBayes_RW_IC_alpha_beta\n0.328\n\n\nhBayes_RW_IC_2alpha_beta\n0.637\n\n\nhBayes_RW_SU_alpha_beta\n0.000\n\n\nhBayes_RW_SU_alphapos_alphaneg_beta\n0.035\n\n\nhBayes_WSLS\n0.000"
+  },
+  {
+    "objectID": "index.html#parameter-estimation",
+    "href": "index.html#parameter-estimation",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Parameter estimation",
+    "text": "Parameter estimation\nParameters of best fit are estimated after the winning model is fit to the data.\nThese is the distribution of the estimated parameters"
+  },
+  {
+    "objectID": "index.html#parameter-estimation-1",
+    "href": "index.html#parameter-estimation-1",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Parameter estimation",
+    "text": "Parameter estimation\nThis graph shows the expected value for each category, in a participant from the behavioral sample"
+  },
+  {
+    "objectID": "index.html#paremeter-estimation",
+    "href": "index.html#paremeter-estimation",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Paremeter estimation",
+    "text": "Paremeter estimation\nAnd this is an example of a participant from the fMRI sample. Note that there is additional change point in the paradigm"
+  },
+  {
+    "objectID": "index.html#computationally-derived-variables",
+    "href": "index.html#computationally-derived-variables",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Computationally-derived variables",
+    "text": "Computationally-derived variables\nTwo variables were derived from the best-fitting model:\n- Uncertainty:\n\\[\\text{Uncertainty}_t = \\frac{1}{\\operatorname{var}(V^{1}_t, V^{2}_t, V^{3}_t, V^{4}_t)}\\] - Prediction error Prediction error is defines as:\n\nEntropy (H):\n\n\\[H(S_t) = -\\sum_{i=1}^4  (P^{m=i}_t)log(P^{m=i}_t)\\] Both quantities are at their heighest when the distribution of the expected values is more uniform."
+  },
+  {
+    "objectID": "index.html#computationally-derived-variables-1",
+    "href": "index.html#computationally-derived-variables-1",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Computationally-derived variables",
+    "text": "Computationally-derived variables\nBoth quantities were scaled and centered within- participants."
+  },
+  {
+    "objectID": "index.html#computationally-derived-variables-2",
+    "href": "index.html#computationally-derived-variables-2",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Computationally-derived variables",
+    "text": "Computationally-derived variables\n\nUncertainty , PE , entropy, across trials"
+  },
+  {
+    "objectID": "index.html#computationally-derived-variables-3",
+    "href": "index.html#computationally-derived-variables-3",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Computationally-derived variables",
+    "text": "Computationally-derived variables\n\nUncertainty was higher after the CP, for all participants but one.\nEntropy and PE were higher after the change point for all participants.\n\nThe two columns indicate the experiment (1 = behavioral, 2 = fMRI)"
+  },
+  {
+    "objectID": "index.html#memory---uncertainty",
+    "href": "index.html#memory---uncertainty",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Memory - Uncertainty",
+    "text": "Memory - Uncertainty\nThe effect of these variables on memory was then analyzed. There was a three-way interaction between accuracy, uncertainty, and experiment:\n\n\n\nCaption"
+  },
+  {
+    "objectID": "index.html#memory---uncertainty-1",
+    "href": "index.html#memory---uncertainty-1",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Memory - Uncertainty",
+    "text": "Memory - Uncertainty\nThe plot shows that the interaction between prediction accuracy and uncertainty is stronger in the fMRI study (experiment_c = 0.5)"
+  },
+  {
+    "objectID": "index.html#memory---prediction-error",
+    "href": "index.html#memory---prediction-error",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Memory - Prediction error",
+    "text": "Memory - Prediction error\nThe effect of prediction error was then analyzed\nThere was a there was a main effect of PE:"
+  },
+  {
+    "objectID": "index.html#memory-and-prediction-error8",
+    "href": "index.html#memory-and-prediction-error8",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Memory and prediction error8",
+    "text": "Memory and prediction error8\nAs we can see from the graph, the effect was strong in the behavioral but not in the fmri study"
+  },
+  {
+    "objectID": "index.html#memory---entropy",
+    "href": "index.html#memory---entropy",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Memory - Entropy",
+    "text": "Memory - Entropy"
+  },
+  {
+    "objectID": "index.html#correlation-between-pe-and-uncertainty",
+    "href": "index.html#correlation-between-pe-and-uncertainty",
+    "title": "PREMCE analysis - Effect of computationally-derived variables on memory",
+    "section": "Correlation between PE and uncertainty",
+    "text": "Correlation between PE and uncertainty"
+  },
+  {
+    "objectID": "Notes.html",
+    "href": "Notes.html",
+    "title": "",
+    "section": "",
+    "text": "This repository was created on 18/09/2026. The quarto notebook and the files are taken from the folder PREMCE_new/beh_fMRI_combined. The relative paths names are the same as the one used in that folder."
+  }
+]
